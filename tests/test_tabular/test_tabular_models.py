@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/1/29 下午4:42
-# @Author  : RegiusQuant <315135833@qq.com>
-# @Project : regius
-# @File    : test_tabular_models.py
-# @Desc    : 说明
+import os
+import sys
+
+sys.path.append(os.getcwd())
 
 import pytest
 import torch
