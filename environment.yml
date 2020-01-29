@@ -1,11 +1,11 @@
 name: regius
 channels:
   - defaults
+  - pytorch
 dependencies:
   - python=3.7
-  - cudatoolkit=10.1
-  - torchvision
-  - pytorch
-  - torchtext
+  - pytorch=1.4
+  - torchvision=0.5
+  - torchtext=0.5
   - pytest
 prefix: /home/bnu/miniconda3/envs/regius
