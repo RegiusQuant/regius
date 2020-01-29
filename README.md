@@ -1,2 +1,2 @@
-# regius
+# Regius
 Regius DL/ML Toolbox
