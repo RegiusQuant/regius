@@ -133,7 +133,10 @@ class WideDeep(nn.Module):
     论文参考: https://arxiv.org/abs/1606.07792
     实现参考: https://github.com/jrzaurin/pytorch-widedeep
 
-
+    Args:
+        wide (nn.Module): Wide&Deep模型中的Wide模块
+        deepdense (nn.Module): Wide&Deep模型中的DeepDense模块
+        out_dim (int): 最终输出的维度,'1'对应回归或者二分类问题,'n_class'对应多分类问题
     """
     def __init__(self, wide: nn.Module, deepdense: nn.Module,
                  out_dim: int = 1):
