@@ -7,5 +7,6 @@ dependencies:
   - pytorch=1.4
   - torchvision=0.5
   - torchtext=0.5
+  - scikit-learn
   - pytest
 prefix: /home/bnu/miniconda3/envs/regius
