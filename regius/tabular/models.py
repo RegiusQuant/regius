@@ -120,7 +120,33 @@ class DeepDense(nn.Module):
             x_cont = x[:, cont_idx].float()
 
         if x_emb is None:
-            x = x_cont
+            x_out = x_cont
         else:
-            x = x_emb if x_cont is None else torch.cat([x_emb, x_cont], 1)
-        return self.dense_layers(x)
+            x_out = x_emb if x_cont is None else torch.cat([x_emb, x_cont], 1)
+        return self.dense_layers(x_out)
+
+
+class WideDeep(nn.Module):
+    """Wide&Deep模型
+
+    Google的Wide&Deep算法实现,用于处理传统表格数据
+    论文参考: https://arxiv.org/abs/1606.07792
+    实现参考: https://github.com/jrzaurin/pytorch-widedeep
+
+
+    """
+    def __init__(self, wide: nn.Module, deepdense: nn.Module,
+                 out_dim: int = 1):
+        super(WideDeep, self).__init__()
+        self.wide = wide
+        self.deepdense = nn.Sequential(deepdense,
+                                       nn.Linear(deepdense.out_dim, out_dim))
+
+    def forward(self, x: Dict[str, Tensor]) -> Tensor:
+        """
+        Args:
+            x (Dict): 包含模型名('wide', 'deepdense')与对应张量的字典
+        """
+        x_out = self.wide(x['wide'])
+        x_out.add_(self.deepdense(x['deepdense']))
+        return x_out

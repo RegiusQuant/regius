@@ -6,7 +6,7 @@ sys.path.append(os.getcwd())
 
 import torch
 
-from regius.table.models import Wide, DeepDense
+from regius.tabular.models import Wide, DeepDense
 
 
 ############################################################
