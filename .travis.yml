@@ -13,5 +13,6 @@ install:
 
   - conda env create -n regius -f environment.yml
   - conda activate regius
+  - pip install .
 script:
   - pytest tests

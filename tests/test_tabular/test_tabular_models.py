@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-import sys
-
-sys.path.append(os.getcwd())
-
 import torch
 
 from regius.tabular.models import Wide, DeepDense, WideDeep

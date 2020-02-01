@@ -25,8 +25,8 @@ setup(
 
     classifiers=[
         'Development Status :: 1 - Planning',
-        # 'License :: OSI Approved :: Apache Software License'
-        # 'Natural Language :: Chinese (Simplified)',
+        'License :: OSI Approved :: Apache Software License'
+        'Natural Language :: Chinese (Simplified)',
         'Programming Language :: Python :: 3.7'
     ]
 )

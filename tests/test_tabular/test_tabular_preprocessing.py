@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-import sys
-
-sys.path.append(os.getcwd())
-
 import pandas as pd
 
 from regius.tabular.preprocessing import WidePreprocessor, DeepPreprocessor
