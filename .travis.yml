@@ -11,8 +11,8 @@ install:
   - conda update -q conda
   - conda info -a
 
-  - conda env create -n regius -f environment.yml
-  - conda activate regius
+  - conda env create -n test_env -f environment.yml
+  - conda activate test_env
   - pip install regius-dl
 script:
   - pytest tests
