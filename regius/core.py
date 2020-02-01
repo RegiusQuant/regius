@@ -5,13 +5,18 @@
 # @File    : core.py
 # @Desc    : Regius常用类型和函数
 
-# typing相关引用
+# typing相关导入
 from typing import Tuple, List, Dict, Optional
 
 import numpy as np
+import pandas as pd
+
+# sklearn相关导入
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
 from sklearn.utils import Bunch
 
-# torch相关引用
+
+# torch相关导入
 import torch
 import torch.nn as nn
 import torch.optim as optim
