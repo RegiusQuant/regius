@@ -14,22 +14,22 @@ class WideDeepDataset(Dataset):
 
     Args:
         x_wide (np.ndarray): Wide模块的输入特征
-        x_deepdense (np.ndarray): DeepDense模块的输入特征
+        x_deep (np.ndarray): DeepDense模块的输入特征
         y (np.ndarray): 预测目标值
     """
     def __init__(self,
                  x_wide: np.ndarray,
-                 x_deepdense: np.ndarray,
+                 x_deep: np.ndarray,
                  y: Optional[np.ndarray] = None):
         self.x_wide = x_wide
-        self.x_deepdense = x_deepdense
+        self.x_deep = x_deep
         self.y = y
 
     def __getitem__(self, idx: int):
-        x = Bunch(wide=self.x_wide[idx], deepdense=self.x_deepdense[idx])
+        x = Bunch(wide=self.x_wide[idx], deep=self.x_deep[idx])
         if self.y is not None:
             return x, self.y[idx]
         return x
 
     def __len__(self):
-        return len(self.x_deepdense)
+        return len(self.x_deep)

@@ -148,8 +148,8 @@ class WideDeep(nn.Module):
     def forward(self, x: Dict[str, Tensor]) -> Tensor:
         """
         Args:
-            x (Dict): 包含模型名('wide', 'deepdense')与对应张量的字典
+            x (Dict): 包含模型名('wide', 'deep')与对应张量的字典
         """
         x_out = self.wide(x['wide'])
-        x_out.add_(self.deepdense(x['deepdense']))
+        x_out.add_(self.deepdense(x['deep']))
         return x_out

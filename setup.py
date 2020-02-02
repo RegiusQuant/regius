@@ -28,5 +28,10 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: Chinese (Simplified)',
         'Programming Language :: Python :: 3.7',
+    ],
+
+    install_requires=[
+        'pandas',
+        'torch',
     ]
 )
