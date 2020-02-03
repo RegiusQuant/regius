@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
@@ -10,7 +10,7 @@ exec(open('regius/version.py').read())
 setup(
     name='regius-dl',
     version=__version__,
-    packages=['regius'],
+    packages=find_packages(),
 
     description='Regius Deep Learning Toolbox',
     long_description=readme,

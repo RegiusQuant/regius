@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import torch
-import numpy as np
 
-from regius.tabular.models import Wide, DeepDense, WideDeep
 from regius.tabular.learner import WideDeepLearner
+from regius.tabular.models import Wide, DeepDense, WideDeep
 
 
 ############################################################
