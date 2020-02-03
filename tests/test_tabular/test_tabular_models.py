@@ -58,6 +58,6 @@ def test_widedeep():
                           cont_cols=['e', 'f', 'g', 'h'])
 
     model = WideDeep(wide, deepdense, out_dim=1)
-    input_dict = {'wide': x_wide, 'deepdense': x_deepdense}
+    input_dict = {'wide': x_wide, 'deep': x_deepdense}
     output_tensor = model(input_dict)
     assert output_tensor.shape == torch.Size([10, 1])

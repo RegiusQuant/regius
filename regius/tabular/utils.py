@@ -8,6 +8,24 @@
 from ..core import *
 
 
+def get_embed_col_dims(df: pd.DataFrame, cols: List[str]) -> List[Tuple[str, int]]:
+    """获取默认配置下的嵌入维度
+
+    Args:
+        df (pd.DataFrame): 原始数据
+        cols (List): 需要嵌入的列名
+
+    Returns:
+        embed_col_dims (List): 嵌入维度列表
+    """
+    embed_col_dims = []
+    for c in cols:
+        n_cat = len(df[c].unique())
+        n_dim = min(600, round(1.6 * n_cat ** 0.56))
+        embed_col_dims.append((c, n_dim))
+    return embed_col_dims
+
+
 class MultiColumnLabelEncoder:
     """多列标签编码器,用于神经网络Embedding的输入
 

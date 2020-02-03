@@ -6,11 +6,10 @@
 # @Desc    : Regius常用类型和函数
 
 import os
+from abc import ABCMeta, abstractmethod
 
 # typing相关导入
 from typing import Tuple, List, Dict, Optional
-
-from tqdm import tqdm, trange
 
 import numpy as np
 import pandas as pd
@@ -27,6 +26,8 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch import Tensor
 from torch.utils.data import Dataset, DataLoader
+
+from tqdm import tqdm, trange
 
 CPU_COUNT = os.cpu_count()
 USE_CUDA = torch.cuda.is_available()
