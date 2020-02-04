@@ -35,7 +35,7 @@ class WideDeepLearner:
         # 设定默认batch_size大小
         self.batch_size = 128
         # 设定默认的优化器
-        self.optimizer = optim.Adam(self.model.parameters())
+        self.optimizer = optim.AdamW(self.model.parameters())
 
         # 设定评测指标,二分类问题默认采用准确率
         if self.objective == 'binary':
@@ -266,3 +266,8 @@ class WideDeepLearner:
         embed_dict = {c: embed_matrix[i]
                       for i, c in enumerate(encoder.encoders[column_name].classes_)}
         return embed_dict
+
+    def get_wide_weights(self, wide_features: Optional[List[str]] = None):
+        wide_weights = self.model.wide.linear.weight.cpu().data.numpy().squeeze()
+        weight_dict = {c: v for c, v in zip(wide_features, wide_weights)}
+        return weight_dict

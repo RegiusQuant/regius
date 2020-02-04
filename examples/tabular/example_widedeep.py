@@ -33,7 +33,7 @@ if __name__ == '__main__':
     print('-' * 60)
     print('Wide Input Shape:', x_wide.shape)
     print('Wide Feature Names:')
-    print(wide_prep.encoder.get_feature_names())
+    print(wide_prep.encoder.get_feature_names(input_features=wide_cols))
 
     embed_col_dims = get_embed_col_dims(
         train_data,
@@ -72,6 +72,12 @@ if __name__ == '__main__':
     print('-' * 60)
     print('Embedding Dict:')
     print(embed_dict)
+    weight_dict = learner.get_wide_weights(
+        wide_features=wide_prep.encoder.get_feature_names(input_features=wide_cols)
+    )
+    print('Wide Weight Dict:')
+    print(weight_dict)
+
     train_loss = learner.history.history['train_loss']
     print('Trainning Loss:')
     print(train_loss)
