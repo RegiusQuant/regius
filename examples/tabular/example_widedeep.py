@@ -15,12 +15,12 @@ if __name__ == '__main__':
         'sex', 'capital-gain', 'capital-loss', 'hours-per-week',
         'native-country', 'income'
     ]
-    train_data = pd.read_csv('/media/bnu/data/uci/adult/adult.data', names=column_names)
+    train_data = pd.read_csv('/media/bnu/data/uci-adult/adult.data', names=column_names)
     print(train_data['education'].unique())
 
     print('Train Data:')
     print(train_data.head())
-    test_data = pd.read_csv('/media/bnu/data/uci/adult/adult.test',
+    test_data = pd.read_csv('/media/bnu/data/uci-adult/adult.test',
                             names=column_names,
                             skiprows=1)
     print('Test Data:')
