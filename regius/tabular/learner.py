@@ -208,6 +208,8 @@ class WideDeepLearner:
             epoch_logs['valid_loss'] = valid_loss
             self.callback_container.on_epoch_end(epoch=epoch, logs=epoch_logs)
 
+        self.callback_container.on_train_end()
+
     def predict(self, x_wide: np.ndarray, x_deep: np.ndarray) -> np.ndarray:
         """进行模型预测
 
