@@ -32,4 +32,12 @@ from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm, trange
 
 CPU_COUNT = os.cpu_count()
-USE_CUDA = torch.cuda.is_available()
+DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+DEVICE_COUNT = torch.cuda.device_count()
+
+
+def get_gpu_memory():
+    os.system('nvidia-smi -q -d Memory | grep -A4 GPU | grep Free > temp.txt')
+    gpu_memory = [int(x.split()[2]) for x in open('temp.txt', 'r').readlines()]
+    os.system('rm temp.txt')
+    return gpu_memory

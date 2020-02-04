@@ -48,9 +48,8 @@ class WideDeepLearner:
         self.callback_container = CallbackContainer([self.history])
         self.callback_container.set_model(self.model)
 
-        # 是否使用GPU
-        if USE_CUDA:
-            self.model.cuda()
+        # 根据运行环境使用GPU
+        self.model.to(DEVICE)
 
         self._temp_train_loss = 0.
         self._temp_valid_loss = 0.
@@ -99,11 +98,12 @@ class WideDeepLearner:
             return F.mse_loss(y_pred, y_true.view(-1, 1))
 
     def _make_train_step(self, x: Dict[str, Tensor], y: Tensor, batch_idx: int):
+        """一个batch的训练"""
         self.model.train()
 
-        x = {k: v.cuda() for k, v in x.items()} if USE_CUDA else x
+        x = {k: v.to(DEVICE) for k, v in x.items()}
         y = y.float()
-        y = y.cuda() if USE_CUDA else y
+        y = y.to(DEVICE)
 
         self.optimizer.zero_grad()
         y_pred = self._acti_func(self.model(x))
@@ -121,12 +121,13 @@ class WideDeepLearner:
         return None, train_loss
 
     def _make_valid_step(self, x: Dict[str, Tensor], y: Tensor, batch_idx: int):
+        """一个batch的验证"""
         self.model.eval()
 
         with torch.no_grad():
-            x = {k: v.cuda() for k, v in x.items()} if USE_CUDA else x
+            x = {k: v.to(DEVICE) for k, v in x.items()}
             y = y.float()
-            y = y.cuda() if USE_CUDA else y
+            y = y.to(DEVICE)
 
             y_pred = self._acti_func(self.model(x))
             loss = self._loss_func(y_pred, y)
@@ -233,7 +234,7 @@ class WideDeepLearner:
             pbar = tqdm(test_loader)
             for inputs in pbar:
                 pbar.set_description('Predict')
-                x = {k: v.cuda() for k, v in inputs.items()} if USE_CUDA else inputs
+                x = {k: v.to(DEVICE) for k, v in inputs.items()}
                 batch_pred = self._acti_func(self.model(x))
                 batch_pred = batch_pred.cpu().data.numpy()
                 batch_pred_list.append(batch_pred)
