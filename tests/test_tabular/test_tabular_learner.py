@@ -30,7 +30,7 @@ def create_test_dataframe(num_samples, objective='regression'):
 # Wide&Deep模型训练测试(Regression)
 ############################################################
 def test_widedeep_regression():
-    train_data = create_test_dataframe(num_samples=64, objective='binary')
+    train_data = create_test_dataframe(num_samples=64, objective='regression')
 
     wide_cols = ['a', 'b']
     wide_prep = WidePreprocessor(wide_cols)
@@ -54,7 +54,7 @@ def test_widedeep_regression():
         embed_drop_p=0.2
     )
     model = WideDeep(wide=wide, deepdense=deepdense)
-    learner = WideDeepLearner(model, objective='regression')
+    learner = WideDeepLearner(model, objective='regression', y_range=(-1, 1))
     learner.fit(x_wide, x_deep, y, num_epochs=20, batch_size=16)
 
     y_pred = learner.predict(x_wide, x_deep)

@@ -6,6 +6,8 @@
 # @Desc    : Regius常用类型和函数
 
 import os
+import time
+from copy import deepcopy
 from abc import ABCMeta, abstractmethod
 
 # typing相关导入
@@ -14,7 +16,7 @@ from typing import Tuple, List, Dict, Optional
 import numpy as np
 import pandas as pd
 
-# sklearn相关导入
+# scikit-learn相关导入
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
 from sklearn.utils import Bunch
 from sklearn.model_selection import train_test_split

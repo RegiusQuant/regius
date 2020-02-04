@@ -14,11 +14,11 @@ class BaseMetric(metaclass=ABCMeta):
 
     @abstractmethod
     def reset(self):
-        raise NotImplementedError('自定义指标必须实现该方法')
+        raise NotImplementedError('custom metric must implement this function.')
 
     @abstractmethod
     def __call__(self, y_pred: Tensor, y_true: Tensor):
-        raise NotImplementedError('自定义指标必须实现该方法')
+        raise NotImplementedError('custom metric must implement this function.')
 
 
 class BinaryAccuracy(BaseMetric):

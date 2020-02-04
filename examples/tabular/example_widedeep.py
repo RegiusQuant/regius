@@ -66,7 +66,15 @@ if __name__ == '__main__':
     )
     model = WideDeep(wide=wide, deepdense=deepdense)
     learner = WideDeepLearner(model, objective='binary')
-    learner.fit(x_wide, x_deep, y, num_epochs=20, batch_size=128)
+    learner.fit(x_wide, x_deep, y, num_epochs=10, batch_size=128)
+
+    embed_dict = learner.get_embeddings(column_name='relationship', encoder=deep_prep.encoder)
+    print('-' * 60)
+    print('Embedding Dict:')
+    print(embed_dict)
+    train_loss = learner.history.history['train_loss']
+    print('Trainning Loss:')
+    print(train_loss)
 
     x_wide_test = wide_prep.transform(test_data)
     x_deep_test = deep_prep.transform(test_data)
